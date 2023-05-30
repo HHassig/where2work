@@ -1,0 +1,268 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+  overflow: scroll;
+  display: flex;
+  margin-bottom: 1.2em;
+  // margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.wrapper a {
+  color: #422800;
+}
+
+.venue-card {
+  box-sizing: border-box;
+  width: 198px;
+  height: 188px;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.25);
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  display: inline-block;
+  border-radius: 15px;
+  text-decoration: none;
+
+}
+
+.venue-card a {
+  text-decoration: none;
+}
+
+.favorite-venue-card {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.venue-card:hover {
+  box-shadow: 0 0px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+.venue-image {
+  display: block;
+  width: 198px;
+  height: 110px;
+  border-radius: 15px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.general-card{
+  width: 90%;
+  margin: 1em 1em 1em 1em!important;
+  box-sizing: border-box;
+  border: 1px solid #FFFFFF;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border-radius: 15px;
+}
+
+.favorite-image-size {
+  width: -webkit-fill-available;
+  object-fit: cover;
+}
+
+.fav-icon {
+  position: absolute;
+  margin: -136px 150px;
+}
+
+.favview-icon {
+  position: absolute;
+  margin: -181px 311px;
+}
+
+.favview-icon-test {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  // margin: -181px 311px;
+}
+
+.fav-background {
+  background-color: #AF795D;
+  color: white;
+  border-radius: 50%;
+  // border: 1px solid #704628;
+  padding: 10px
+}
+
+fav-background-show {
+  background-color: white;
+}
+
+.favorite-venue-card a {
+  color: rgb(66, 40, 0);
+  text-decoration: none;
+}
+
+.venue-text {
+  width: 75%;
+  // height: 24px;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  margin-left: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  text-align: left;
+  text-decoration: none;
+  color: #000000;
+}
+
+.venue-first-row .venue-text {
+  text-decoration: none;
+}
+
+.venue-card .fa-star {
+  margin-left: 0.5em;
+}
+
+.card-trip-heart {
+  // position: absolute;
+  text-transform: uppercase;
+  background-color: #d1e751;
+  color: #FE8668;
+  margin: auto;
+  // align-items: center;
+  // display: flex;
+  // justify-content: center;
+  border-radius: 1.5em;
+  font-weight: bold;
+  background: linear-gradient(#422800, #AF795D);
+  transition: background 0.3s ease;
+  border: 1px solid white;
+  margin-top: 5.0em;
+  right: 0.5em;
+  top: 10em;
+  width: 20%;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  font-size: 1em;
+}
+
+.venue-cardmap {
+  box-sizing: border-box;
+  width: 150px;
+  height: 150px;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  border-radius: 15px;
+  font-size: small;
+}
+
+.venue-cardmap:hover {
+  box-shadow: 0 0px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+.venue-imagemap {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  width: 130px;
+  height: 90px;
+  border-radius: 15px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.venue-textmap {
+  width: 100%;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: small;
+  line-height: 24px;
+  margin-left: 0.5em;
+  text-align: left;
+  color: #000000;
+}
+
+
+.mapboxgl-popup-content {
+  padding: 0px !important;
+  background-color: transparent;
+  border: transparent
+}
+
+.venue-index-ratingmap {
+  display: flex;
+  font-size: smaller;
+}
+
+.title-group {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 0.3em;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 3em;
+  color: #422800;
+  padding-left: 0.5em;
+}
+
+
+.title-group i {
+  font-size: 25px;
+  color: #422800;
+  margin-right: 5px;
+  margin-left: 3px;
+}
+
+.extra-margin-title-group{
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+
+.venue-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-icons {
+  display: flex;
+  margin-left: 0.5em;
+}
+
+.venue-icons i {
+  margin-right: 5px;
+}
+
+.venue-first-row {
+  display: flex;
+  margin-right: 5px;
+}
+
+.card-rating {
+  display: flex;
+}
+
+.card-rating i {
+  color: #422800;
+}
+
+#wifi-review {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
+}
+
+.wifistests {
+  display: flex;
+}

@@ -1,0 +1,19 @@
+.mapDiv>.tab-pane {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.mapDiv>.active {
+  display: block;
+  height: auto;
+}
+
+.mapboxgl-popup {
+  max-width: 150px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}

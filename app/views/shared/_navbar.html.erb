@@ -1,7 +1,8 @@
+<% if false %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to "/", class: "navbar-brand" do %>
+      <%= image_tag "https://i.imgur.com/AIqfQAt.png" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +19,7 @@
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
@@ -36,3 +35,116 @@
     </div>
   </div>
 </div>
+<% end %>
+
+<nav class="navbar navbar-expand justify-content-center sticky
+", style="
+    background-color: whitesmoke;">
+  <div class="container">
+    <ul class="navbar-nav nav-justified w-100 text-center">
+
+      <li class="nav-item">
+        <%= link_to venues_path, class:"nav-link d-flex flex-column" do  %>
+          <% if  params[:action] == 'index' && params[:controller] == 'venues'%>
+            <i class="fa-solid fa-house bordernavbar"></i>
+            <span class="d-none d-sm-inline", style=" color: rgba(114, 0, 38, 1);">Home</span>
+            <% else %>
+            <i class="fa-solid fa-house"></i>
+            <span class="d-none d-sm-inline">Home</span>
+          <% end %>
+        <% end %>
+
+      </li>
+
+      <li class="nav-item" style="margin-right: 25px;">
+
+      <% if user_signed_in? %>
+        <%= link_to bookings_path, class:"nav-link d-flex flex-column" do  %>
+          <% if params[:action]== 'index' && params[:controller] == 'bookings'%>
+            <i class="fa-solid fa-calendar-check  bordernavbar"></i>
+            <span class="d-none d-sm-inline">Bookings</span>
+          <% else %>
+            <i class="fa-solid fa-calendar-check"></i>
+            <span class="d-none d-sm-inline">Bookings</span>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <%= link_to new_user_session_path, class: "nav-link d-flex flex-column" do  %>
+          <% if params[:action]== 'index' && params[:controller] == 'bookings'%>
+            <i class="fa-solid fa-calendar-check bordernavbar"></i>
+            <span class="d-none d-sm-inline", style=" color: rgba(114, 0, 38, 1);">Bookings</span>
+          <% else %>
+            <i class="fa-solid fa-calendar-check"></i>
+            <span class="d-none d-sm-inline">Bookings</span>
+          <% end %>
+        <% end %>
+      </li>
+      <% end %>
+
+
+
+      <li class="nav-item add-button">
+        <%= link_to "/venues/new", class:"nav-link d-flex flex-column align-items-center" do  %>
+          <% if params[:action] == 'create' && params[:controller] == 'venues'%>
+            <i class="fa-solid fa-circle-plus fa-4x addblackground"></i>
+            <span class="d-none d-sm-inline", style=" color: rgba(132, 96, 70, 1);">Add</span>
+          <% else %>
+            <i class="fa-solid fa-circle-plus fa-4x addblackground"></i>
+            <span class="d-none d-sm-inline">Add</span>
+          <% end %>
+        <% end %>
+      </li>
+
+      <li class="nav-item" style="margin-left: 25px;">
+        <% if user_signed_in? %>
+          <%= link_to  user_favorite_venues_path(current_user), class:"nav-link d-flex flex-column" do  %>
+            <% if  params[:action] == 'index' && params[:controller] == 'favorite_venues'%>
+              <i class="fa-solid fa-heart bordernavbar"></i>
+              <span class="d-none d-sm-inline", style=" color: rgba(132, 96, 70, 1);">Favorites</span>
+            <% else %>
+              <i class="fa-solid fa-heart"></i>
+              <span class="d-none d-sm-inline">Favorites</span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class: "nav-link d-flex flex-column" do  %>
+            <% if  params[:action] == 'index' && params[:controller] == 'favorite_venues'%>
+                <i class="fa-solid fa-heart"></i>
+                <span class="d-none d-sm-inline", style=" color: rgba(132, 96, 70, 1);">Favorites</span>
+              <% else %>
+                <i class="fa-solid fa-heart"></i>
+                <span class="d-none d-sm-inline">Favorites</span>
+              <% end %>
+          <% end %>
+        <% end %>
+
+
+      </li>
+
+      <li class="nav-item">
+        <% if user_signed_in? %>
+          <%= link_to user_path(current_user), class:"nav-link d-flex flex-column" do  %>
+            <% if params[:action] == 'show' && params[:controller] == 'users'%>
+              <i class="fa-solid fa-user bordernavbar"></i>
+              <span class="d-none d-sm-inline", style=" color: rgba(132, 96, 70, 1);">You</span>
+            <% else %>
+              <i class="fa-solid fa-user"></i>
+              <span class="d-none d-sm-inline">You</span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class: "nav-link d-flex flex-column" do  %>
+          <% if params[:action] == 'show' && params[:controller] == 'users'%>
+              <i class="fa-solid fa-user bordernavbar"></i>
+              <span class="d-none d-sm-inline", style=" color: rgba(132, 96, 70, 1);">You</span>
+            <% else %>
+              <i class="fa-solid fa-user"></i>
+              <span class="d-none d-sm-inline">You</span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

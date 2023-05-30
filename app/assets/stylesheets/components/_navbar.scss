@@ -8,5 +8,59 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 4em;
+}
+
+.add-button {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  width: 20%;
+  text-align: center;
+  z-index: 100;
+}
+
+.add-button i {
+  background-color: whitesmoke;
+  width: fit-content;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.navbar{
+  background-color: #704628!important;
+  color:white;
+}
+.navbar i{
+  color:white;
+}
+
+.addblackground{
+  background-color: #704628!important;
+}
+.fa-cog {
+  color: rgba(114, 0, 38, 1);
+}
+
+.sticky {
+  width: 100%;
+  position: sticky !important;
+  bottom: 0;
+  z-index: 1020;
+}
+
+.bordernavbar {
+  width: 15px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid white;
+  margin: 0 auto;
+}
+
+.navitem{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }

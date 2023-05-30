@@ -1,2 +1,11 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.imgur.com/lbeMx0V.jpg);">
+  <div class="container">
+    <h1>Where2Work</h1>
+    <h2>Work.</h2>
+    <h2>From Anywhere.</h2>
+    <p>The most reliable workspace.</p>
+    <p>At your fingertips.</p>
+    <%= link_to "Get 2 Work", venues_path, class: "btn btn-gradient btn-general" %>
+    <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Sure you want to log out?"}, class: "btn btn-gradient btn-general" %>
+  </div>
+</div>

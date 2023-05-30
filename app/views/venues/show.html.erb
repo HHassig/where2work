@@ -1,0 +1,112 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<div class="card-trip">
+  <%= cl_image_tag @venue.photo.key %>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @venue.name %></h2>
+      <h3><% if @venue.wifi %>
+        <i class="fa-solid fa-wifi title"></i>
+      <% end %>
+      <% if @venue.power_outlets %>
+        <i class="fa-solid fa-plug title"></i>
+      <% end %>
+      <% if @venue.suited_for_calls %>
+        <i class="fa-solid fa-phone title"></i>
+      <% end %>
+      <% if @venue.natural_light %>
+        <i class="fa-solid fa-sun title"></i>
+      <% end %>
+      </h3>
+      <% unless @venue.latitude.nil? %>
+        <% url = "https://www.google.com/maps/search/?api=1&query=#{@venue.latitude},#{@venue.longitude}" %>
+        <p><%= link_to @venue.address, url, target: "_blank" %></p>
+      <% else %>
+        <p><%= @venue.address %></p>
+      <% end %>
+
+  <%= render "bookings/form", venue: @venue, booking: @booking %>
+
+      <% @venue.all_reviews.last(2).each do |review| %>
+        <div class="card-product">
+          <% unless review.photo.key.nil? %>
+            <%= cl_image_tag review.photo.key, :alt=>"review image", :width=>250 %>
+          <% else %>
+            <%= image_tag "favicon.ico", :alt=>"review image", :width=>250 %>
+          <% end %>
+          <div class="card-product-infos">
+            <h3>
+              <% review.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            </h3>
+            <p>
+              <% if review.power_outlets %>
+                <i class="fas fa-plug sfilter"></i>
+              <% end %>
+              <% if review.natural_light %>
+                <i class="fas fa-sun sfilter"></i>
+              <% end %>
+              <% if review.suited_for_calls %>
+                <i class="fas fa-phone sfilter"></i>
+              <% end %>
+              <% unless review.wifi_up.nil? || review.wifi_down.nil? %>
+                <i class="fas fa-wifi sfilter"></i>
+                <% unless review.wifi_down.nil? %>
+                  <i class="fas fa-arrow-down wifi"></i>
+                  <%= review.wifi_down %> Mbps
+                <% end %>
+                <% unless review.wifi_up.nil? %>
+                  <i class="fas fa-arrow-up wifi"></i>
+                  <%= review.wifi_up %> Mbps
+                <% end %>
+              <% end %>
+            </p>
+
+            <p class="comment">
+              <%= "#{review.comment.capitalize.first(20)} " %>
+              <%= link_to "(full review)", venue_review_path(@venue, review) %>
+            </p>
+
+          </div>
+        </div>
+        <% end %>
+        <p><%= link_to "All reviews", venue_reviews_path(@venue) %></p>
+      </div>
+      <% if @venue.average_rating %>
+        <h3 class="card-trip-user btn-left-vshow"><i class="fas fa-star"></i><%= @venue.average_rating %></h3>
+      <% end %>
+
+      <h3 class="card-trip-review">
+        <% if FavoriteVenue.find_by(user: current_user, venue:@venue) %>
+          <div data-controller="favorite" data-favorite-venue-id-value='<%= @venue.id %>' data-favorite-favorite-id-value='<%=FavoriteVenue.find_by(user: current_user, venue:@venue).id %>'>
+            <%= link_to ('<i class="fa-solid fa-heart fav-background-show" data-action="click->favorite#removeFavoriteVenueShow"></i>').html_safe, venue_favorite_venue_path(@venue,FavoriteVenue.find_by(user: current_user, venue:@venue)), data: {turbo_method: "delete", target: "favorite.remove"} %>
+          </div>
+        <% else %>
+          <div data-controller="favorite" data-favorite-venue-id-value='<%=@venue.id%>'>
+            <%=link_to ('<i class="fa-regular fa-heart fav-background-show" data-action="click->favorite#addFavoriteVenueShow"></i>').html_safe, venue_favorite_venues_path(@venue), data: {turbo_method: "post", target: "favorite.add"} %>
+          </div>
+        <% end %>
+      </h3>
+
+  </div>
+</div>
+
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+}
+</script>
