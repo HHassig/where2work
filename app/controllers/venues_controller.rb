@@ -16,10 +16,10 @@ class VenuesController < ApplicationController
       @search_term = params[:search]
       @venues = @venues.where(sql_query, query: "%#{@search_term}%")
     end
-    # @markers = @venues.geocoded.map do |venue|
-    #   { lat: venue.latitude, lng: venue.longitude,
-    #     info_window: render_to_string(partial: "info_window", locals: { venue: }) }
-    # end
+    @markers = @venues.geocoded.map do |venue|
+      { lat: venue.latitude, lng: venue.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { venue: }) }
+    end
   end
 
   def new
