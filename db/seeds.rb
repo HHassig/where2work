@@ -5,11 +5,11 @@ require "open-uri"
 Faker::Config.locale = "ca-CAT"
 
 # Destroying:
-Review.destroy_all
-Booking.destroy_all
-VenueOffer.destroy_all
-Venue.destroy_all
-User.destroy_all
+# Review.destroy_all
+# Booking.destroy_all
+# VenueOffer.destroy_all
+# Venue.destroy_all
+# User.destroy_all
 
 venue_photos = []
 csv_text = File.read(Rails.root.join('lib','seeds','cafe_photos.csv'))
@@ -32,87 +32,87 @@ csv.each do |row|
   user_photos << row
 end
 
-x = 0
-while x < user_photos.size - 20
-  name = Faker::Name.name
-  user = User.new(
-    is_owner: false,
-    name: name,
-    username: Faker::Internet.username,
-    email: Faker::Internet.email,
-    password: Faker::Internet.password,
-  )
-  file = URI.open(user_photos[x][0])
-  user.photo.attach(io: file, content_type: "image/png", filename: "user#{user.id}.jpg")
-  user.save!
-  puts "User #{x} saved!"
-  x += 1
-end
+# x = 0
+# while x < user_photos.size - 20
+#   name = Faker::Name.name
+#   user = User.new(
+#     is_owner: false,
+#     name: name,
+#     username: Faker::Internet.username,
+#     email: Faker::Internet.email,
+#     password: Faker::Internet.password,
+#   )
+#   file = URI.open(user_photos[x][0])
+#   user.photo.attach(io: file, content_type: "image/png", filename: "user#{user.id}.jpg")
+#   user.save!
+#   puts "User #{x} saved!"
+#   x += 1
+# end
 
-x = 0
-while x < 20
-  name = Faker::Name.name
-  user = User.new(
-    is_owner: true,
-    name: name,
-    username: Faker::Internet.username,
-    email: Faker::Internet.email,
-    password: Faker::Blockchain::Bitcoin.address,
-  )
-  file = URI.open(user_photos[x + 279][0])
-  user.photo.attach(io: file, content_type: "image/png", filename: "user#{user.id}.jpg")
-  user.save!
-  puts "User #{x + 279} saved!"
-  x += 1
-end
+# x = 0
+# while x < 20
+#   name = Faker::Name.name
+#   user = User.new(
+#     is_owner: true,
+#     name: name,
+#     username: Faker::Internet.username,
+#     email: Faker::Internet.email,
+#     password: Faker::Blockchain::Bitcoin.address,
+#   )
+#   file = URI.open(user_photos[x + 279][0])
+#   user.photo.attach(io: file, content_type: "image/png", filename: "user#{user.id}.jpg")
+#   user.save!
+#   puts "User #{x + 279} saved!"
+#   x += 1
+# end
 
-x = 0
-while x < venue_photos.size
-  venue = Venue.new(
-    name: venue_photos[x][0],
-    address: venue_photos[x][3],
-    website: venue_photos[x][4],
-    category: venue_photos[x][1],
-    user: User.all.sample,
-    wifi: Faker::Boolean.boolean(true_ratio: 0.75),
-    power_outlets: [true, false].sample,
-    natural_light: [true, false].sample,
-    suited_for_calls: [true, false].sample,
-    opening_time: [6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9, 9.5, 10.0].sample,
-    closing_time: [17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5].sample
-  )
-  file = URI.open(venue_photos[x][2])
-  venue.photo.attach(io: file, content_type: "image/png", filename: "venue_#{venue.id}.jpg")
-  venue.save!
-  puts "Venue #{x} saved!"
-  x += 1
-end
+# x = 0
+# while x < venue_photos.size
+#   venue = Venue.new(
+#     name: venue_photos[x][0],
+#     address: venue_photos[x][3],
+#     website: venue_photos[x][4],
+#     category: venue_photos[x][1],
+#     user: User.all.sample,
+#     wifi: Faker::Boolean.boolean(true_ratio: 0.75),
+#     power_outlets: [true, false].sample,
+#     natural_light: [true, false].sample,
+#     suited_for_calls: [true, false].sample,
+#     opening_time: [6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9, 9.5, 10.0].sample,
+#     closing_time: [17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5].sample
+#   )
+#   file = URI.open(venue_photos[x][2])
+#   venue.photo.attach(io: file, content_type: "image/png", filename: "venue_#{venue.id}.jpg")
+#   venue.save!
+#   puts "Venue #{x} saved!"
+#   x += 1
+# end
 
-x = 0
-while x < 100
-  venue_offer = VenueOffer.create(
-    venue: Venue.all.sample,
-    coupon: [5.0, 10.0, 15.0, 20.0, 30.0].sample
-  )
-  venue_offer.save!
-  puts "Offer #{x} saved!"
-  x += 7
-end
+# x = 0
+# while x < 100
+#   venue_offer = VenueOffer.create(
+#     venue: Venue.all.sample,
+#     coupon: [5.0, 10.0, 15.0, 20.0, 30.0].sample
+#   )
+#   venue_offer.save!
+#   puts "Offer #{x} saved!"
+#   x += 7
+# end
 
-x = 0
-while x < 1000
-  booking = Booking.new(
-    user: User.all.sample,
-    venue: Venue.all.sample,
-    date: Date.today - rand(900)
-  )
-  booking.save!
-  puts "Booking #{x} saved!"
-  x += 1
-end
+# x = 0
+# while x < 1000
+#   booking = Booking.new(
+#     user: User.all.sample,
+#     venue: Venue.all.sample,
+#     date: Date.today - rand(900)
+#   )
+#   booking.save!
+#   puts "Booking #{booking.id} saved!"
+#   x += 1
+# end
 
-x = 0
-while x < 499
+x = 1
+while x < 500
   review = Review.new(
     suited_for_calls: [Faker::Boolean.boolean(true_ratio: 0.6)],
     coffe_price: rand(0..5),
@@ -124,7 +124,7 @@ while x < 499
     food_price: rand(0..5),
     comment: Faker::Restaurant.review,
     title: Faker::Coffee.origin,
-    booking: Booking.find(x+1)
+    booking: Booking.find(x+5000)
   )
   file = URI.open(review_photos[x][0])
   review.photo.attach(io: file, content_type: "image/png", filename: "review_#{review.id}.jpg")
@@ -144,6 +144,7 @@ admin = User.new(
 file = URI.open("https://i.imgur.com/HIVLLtb.jpg")
 admin.photo.attach(io: file, content_type: "image/png", filename: "user#{user.id}.jpg")
 admin.save!
+
 
 user = User.new(
     is_owner: true,
